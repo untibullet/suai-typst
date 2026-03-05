@@ -12,6 +12,7 @@ case "$OSTYPE" in
 esac
 
 DEST="$BASE/$NAME/$VERSION"
-mkdir -p "$(dirname "$DEST")"
-ln -sfn "$SRC" "$DEST"
+rm -rf "$DEST"
+mkdir -p "$DEST"
+cp -r "$SRC/." "$DEST"
 echo "Установлен $NAME $VERSION → $DEST"
