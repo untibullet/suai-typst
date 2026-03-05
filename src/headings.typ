@@ -26,7 +26,7 @@
   {
     set par(first-line-indent: 0pt)
     align(center)[
-      #block(above: 0pt, below: 1em)[
+      #block(above: 0em, below: 1em)[
         #text(weight: "bold", size: body-size)[#upper(it)]
       ]
     ]

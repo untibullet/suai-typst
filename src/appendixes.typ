@@ -1,4 +1,5 @@
-#import "utils.typ": heading-numbering
+#import "numbering.typ": heading-numbering
+#import "constants.typ": body-size 
 
 #let is-heading-in-appendix(heading) = state("appendixes", false).at(
   heading.location(),
@@ -26,12 +27,13 @@
       message: "В приложениях не может быть структурных заголовков или заголовков без нумерации",
     )
     counter("appendix").step()
-    block[#upper([приложение]) #numbering(
+    set text(size: body-size)
+    block(above: 0em, below: 1em)[#upper([приложение]) #numbering(
         it.numbering,
         ..counter(heading).at(
           it.location(),
         ),
-      ) \ #text(weight: "medium")[#it.body]]
+      ) \ #text(size: body-size, weight: "bold")[#it.body]]
   }
 
   show heading.where(level: 1): it => context {
