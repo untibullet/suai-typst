@@ -1,4 +1,4 @@
-#let suai-university-lab(
+#let suai-laboratory(
   organization: none,
   department: none,
   group: none,
@@ -70,7 +70,7 @@
   ]
 }
 
-#let suai-university-coursework(
+#let suai-coursework(
   organization: none,
   department: none,
   group: none,
@@ -147,6 +147,6 @@
 }
 
 #let title-templates = (
-  suai-university-lab: suai-university-lab,
-  suai-university-coursework: suai-university-coursework,
+  suai-laboratory: suai-laboratory,
+  suai-coursework: suai-coursework,
 )

@@ -12,7 +12,7 @@
 ## Установка
 
 ```sh
-git clone https://github.com/you/suai-typst
+git clone https://github.com/untibullet/suai-typst.git
 cd suai-typst
 bash install.sh
 ```
@@ -26,7 +26,7 @@ bash install.sh
 #import "@local/suai-typst:0.1.0": gost, title-templates, abstract
 
 #show: gost.with(
-  title-template: title-templates.suai-university-lab,
+  title-template: title-templates.suai-laboratory,
   organization: "ГУАП",
   department: "Кафедра №33",
   group: "4321",

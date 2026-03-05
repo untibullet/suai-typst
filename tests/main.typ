@@ -1,7 +1,7 @@
 #import "@local/suai-typst:0.1.0": gost, gost-heading, title-templates, abstract, appendixes
 
 #show: gost.with(
-  title-template: title-templates.suai-university-lab,
+  title-template: title-templates.suai-coursework,
   organization: "ГУАП",
   department: "Кафедра №42",
   group: "1234",
