@@ -64,5 +64,7 @@
   show figure.where(kind: image): it => block(inset: (bottom: 1em), it)
   show figure.where(kind: table): it => align(left, pad(left: indent, block(inset: (top: 1em, bottom: 1em), it)))
 
+  show table: it => align(left, it)  
+
   body
 }
