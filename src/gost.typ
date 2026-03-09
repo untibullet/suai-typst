@@ -5,11 +5,12 @@
 
 #let gost(
   title-template: none,
-  organization: none,
+  organization: "ГУАП",
   department: none,
   group: none,
   subject: none,
   title: none,
+  work-number: none,
   authors: none,
   teachers: none,
   position: none,
@@ -26,6 +27,7 @@
     group: group,
     subject: subject,
     title: title,
+    work-number: work-number,
     authors: authors,
     teachers: teachers,
     position: position,
@@ -60,7 +62,7 @@
   show figure.where(kind: table): set figure.caption(position: top)
 
   show figure.where(kind: image): it => block(inset: (bottom: 1em), it)
-  show figure.where(kind: table): it => block(inset: (top: 1em, bottom: 1em), it)
+  show figure.where(kind: table): it => align(left, pad(left: indent, block(inset: (top: 1em, bottom: 1em), it)))
 
   body
 }

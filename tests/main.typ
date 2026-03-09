@@ -1,11 +1,11 @@
 #import "@local/suai-typst:0.1.0": gost, gost-heading, title-templates, abstract, appendixes
 
 #show: gost.with(
-  title-template: title-templates.suai-coursework,
-  organization: "ГУАП",
-  department: "Кафедра №42",
+  title-template: title-templates.suai-laboratory,
+  department: "42",
   group: "1234",
   subject: "Тестовая дисциплина",
+  work-number: "3",
   title: "Тестовая лабораторная работа",
   authors: ("Иванов И.И.",),
   teachers: ("Петров П.П.",),

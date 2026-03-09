@@ -1,9 +1,10 @@
 #let suai-laboratory(
-  organization: none,
+  organization: "ГУАП",
   department: none,
   group: none,
   subject: none,
   title: none,
+  work-number: none,
   authors: none,
   teachers: none,
   position: none,
@@ -14,7 +15,7 @@
 
   align(upper(organization), center)
 
-  align(center, pad(upper(department), top: 0.85cm))
+  align(center, pad(top: 0.85cm)[КАФЕДРА №#upper(department)])
 
   v(2.12cm)
 
@@ -38,7 +39,7 @@
     #table(
       stroke: none,
       columns: 1fr,
-      pad(top: 1.69cm)[#text(size: 14pt)[ОТЧЕТ О ЛАБОРАТОРНОЙ РАБОТЕ]],
+      pad(top: 1.69cm)[#text(size: 14pt)[ОТЧЕТ О ЛАБОРАТОРНОЙ РАБОТЕ №#work-number]],
       pad(top: 1.27cm, bottom: 1.27cm)[#text(size: 14pt)[#upper(title)]],
       pad(top: 0.21cm)[по курсу: #upper(subject)],
     )
@@ -76,6 +77,7 @@
   group: none,
   subject: none,
   title: none,
+  number: none,
   authors: none,
   teachers: none,
   position: none,
