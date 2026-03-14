@@ -1,5 +1,5 @@
 #import "numbering.typ": heading-numbering
-#import "constants.typ": body-size 
+#import "constants.typ": body-size, indent
 
 #let is-heading-in-appendix(heading) = state("appendixes", false).at(
   heading.location(),
@@ -26,34 +26,44 @@
       it.numbering != none,
       message: "В приложениях не может быть структурных заголовков или заголовков без нумерации",
     )
-    counter("appendix").step()
     set text(size: body-size)
-    block(above: 0em, below: 1em)[#upper([приложение]) #numbering(
-        it.numbering,
-        ..counter(heading).at(
-          it.location(),
-        ),
-      ) \ #text(size: body-size, weight: "bold")[#it.body]]
+    set pad(left: indent)
+    if it.level > 1 {
+      align(left, block(above: 1em, below: 1em)[
+        #pad(left: indent, [
+          #numbering(
+          heading-numbering,
+          counter("appendix").at(it.location()).first(),
+          ..counter(heading).at(it.location()).slice(1),
+        ) #text(weight: "bold")[#it.body]
+        ])
+      ])
+    }
   }
 
   show heading.where(level: 1): it => context {
+    counter("appendix").step()
     counter(figure.where(kind: image)).update(0)
     counter(figure.where(kind: table)).update(0)
     counter(figure.where(kind: raw)).update(0)
     counter(math.equation).update(0)
 
     pagebreak(weak: true)
-    it
+    set text(size: body-size)
+    align(center, block(above: 0em, below: 1em)[
+      #upper([приложение]) #counter("appendix").display(heading-numbering) \
+      #text(size: body-size, weight: "bold")[#it.body]
+    ])
   }
 
   set figure(numbering: it => {
-    let current-heading = counter(heading).get()
-    get-element-numbering(current-heading, it)
+    let appendix-n = counter("appendix").get().first()
+    get-element-numbering((appendix-n,), it)
   })
 
   set math.equation(numbering: it => {
-    let current-heading = counter(heading).get()
-    [(#get-element-numbering(current-heading, it))]
+    let appendix-n = counter("appendix").get().first()
+    [(#get-element-numbering((appendix-n,), it))]
   })
 
   state("appendixes").update(true)

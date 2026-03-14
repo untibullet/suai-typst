@@ -1,5 +1,7 @@
 #import "constants.typ": body-font, body-size, title-size, indent, page-margin, page-margin-title
 #import "headings.typ": headings, structural-heading
+#import "appendixes.typ": is-heading-in-appendix
+#import "numbering.typ": heading-numbering
 
 #let gost-heading = structural-heading
 
@@ -37,8 +39,6 @@
 
   pagebreak()
 
-  
-
   set page(numbering: "1", number-align: center + bottom, margin: page-margin)
   set text(font: body-font, size: body-size, lang: "ru")
   set par(
@@ -52,6 +52,25 @@
   show enum: it => pad(left: indent, top: 0.5em, bottom: 0.5em)[#it]
 
   show: headings
+
+  show outline.entry: it => {
+    show linebreak: [ ]
+    if is-heading-in-appendix(it.element) {
+      if it.element.level > 1 { return none }
+      let prefix = heading-numbering(counter("appendix").at(it.element.location()).first())
+      link(it.element.location(), it.indented(
+        none,
+        [Приложение #prefix #it.element.body]
+          + sym.space
+          + box(width: 1fr, it.fill)
+          + sym.space
+          + sym.wj
+          + it.page(),
+      ))
+    } else {
+      it
+    }
+  }
 
   set figure.caption(separator: [ — ])
 

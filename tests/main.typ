@@ -93,6 +93,23 @@ $ ||bold(x)|| = sqrt(sum_(i=1)^n x_i^2) $
 #appendixes[
   = Исходный код программы
 
+  == graph.go
+
+  #lorem(30)
+
+  #figure(
+    rect(width: 100%, height: 3cm, fill: luma(220)),
+    caption: [Пример вывода программы],
+  )
+
+  #lorem(15)
+]
+
+#appendixes[
+  = Исходный код программы
+
+  == graph.go
+
   #lorem(30)
 
   #figure(
