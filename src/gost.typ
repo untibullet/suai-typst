@@ -1,4 +1,4 @@
-#import "constants.typ": body-font, body-size, title-size, indent, page-margin, page-margin-title
+#import "constants.typ": body-font, body-size, title-size, indent, page-margin, page-margin-title, table-size
 #import "headings.typ": headings, structural-heading
 #import "appendixes.typ": is-heading-in-appendix
 #import "numbering.typ": heading-numbering
@@ -77,13 +77,28 @@
   show figure.where(kind: image): set figure(supplement: [Рисунок])
   show figure.where(kind: image): set figure.caption(position: bottom)
 
-  show figure.where(kind: table): set figure(supplement: [Таблица])
+  show figure.where(kind: table): set figure(
+    supplement: [#h(indent)Таблица],
+    numbering: num => {
+      let section = counter(heading).get().first()
+      str(section) + "." + str(num)
+    },
+  )
   show figure.where(kind: table): set figure.caption(position: top)
 
-  show figure.where(kind: image): it => block(inset: (bottom: 1em), it)
-  show figure.where(kind: table): it => align(left, pad(left: indent, block(inset: (top: 1em, bottom: 1em), it)))
+  show figure.where(kind: image): it => block(inset: (top: 1em, bottom: 1em), it)
+  show figure.where(kind: table): set block(breakable: true)
+  show figure.where(kind: table): it => {
+    align(left, block(inset: (top: 1em, bottom: 1em), it))
+  }
 
-  show table: it => align(left, it)  
+  show table: it => {
+    set text(size: table-size, hyphenate: auto)
+    show "_": "_" + "\u{200B}"
+    show table.cell: set block(breakable: false)
+    show table.cell: set align(horizon)
+    align(left, it)
+  }
 
   body
 }
