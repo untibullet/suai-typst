@@ -52,6 +52,11 @@
   show enum: it => pad(left: indent, top: 0.5em, bottom: 0.5em)[#it]
 
   show: headings
+  show heading.where(level: 1): it => {
+    counter(figure.where(kind: table)).update(0)
+    counter(figure.where(kind: image)).update(0)
+    it
+  }
 
   show outline.entry: it => {
     show linebreak: [ ]
@@ -74,7 +79,13 @@
 
   set figure.caption(separator: [ — ])
 
-  show figure.where(kind: image): set figure(supplement: [Рисунок])
+  show figure.where(kind: image): set figure(
+    supplement: [Рисунок],
+    numbering: num => {
+      let section = counter(heading).get().first()
+      str(section) + "." + str(num)
+    },
+  )
   show figure.where(kind: image): set figure.caption(position: bottom)
 
   show figure.where(kind: table): set figure(
@@ -99,6 +110,8 @@
     show table.cell: set align(horizon)
     align(left, it)
   }
+
+  show table: set block(width: 100%)
 
   body
 }
